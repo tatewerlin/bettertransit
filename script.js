@@ -1,37 +1,76 @@
-(function(){
+(() => {
     "use strict";
     console.log('reading js');
     const html = document.querySelector('html');
-    const inputs = document.querySelectorAll('.input');
-    let currentIndex = 0;
-    const sections = document.querySelectorAll('section');
-    let sectionTops=[];
-    let pageTop;
-    let sectionIndex = 1;
-    let prevSectionIndex = 1;
-    sections.forEach(function(eachSection){
-        sectionTops.push(Math.floor(eachSection.getBoundingClientRect().top) + window.scrollY);
-    });
-    window.addEventListener('scroll', function(){
-        pageTop = window.scrollY; // this should be equal to the height of the page before the top of first section (i think)
-        console.log(pageTop);
-        if (pageTop > sectionTops[sectionIndex]) {
-            sectionIndex++;
-            console.log(`scrolling down ${sectionIndex}`);
-        }
-        else if (sectionIndex > 1 && pageTop < sectionTops[sectionIndex - 1]) {
-            sectionIndex--;
-            console.log(`scrolling up ${sectionIndex}`);
-        }
-        if (sectionIndex != prevSectionIndex) {
-            // do stuff to the page here
-            html.setAttribute('class', `bgcolor${sectionIndex}`);
-            // reset the counter for the next section...
-            prevSectionIndex = sectionIndex;
-        }
-    });
-    console.log(sectionTops);
+    const inputs = document.querySelectorAll('.input'); // this class is used to get divs
+    const homepageLinks = document.querySelectorAll('.homepage-link');
+    const pageData = { // these switch based on which section is in the viewport
+        backgroundColor: ['var(--default-light)', 'var(--aquamarine)', 'var(--medium-blue)'],
+        textColor: ['var(--default-dark)', 'var(--default-dark)', 'var(--default-light)'],
+        linkHoverColor: ['var(--medium-blue)', 'var(--scarlet)', 'var(--aquamarine)']
+    }
+    const footerLinks = document.querySelectorAll('#footer-link-stack a');
+    for(let i=0; i<footerLinks.length; i++){
+        footerLinks[i].querySelector('.material-symbols-outlined').classList.toggle('hidden'); // hide the arrow icons by default
+        footerLinks[i].addEventListener('mouseover', () =>{
+            footerLinks[i].querySelector('.material-symbols-outlined').classList.toggle('hidden');
+        });
+        footerLinks[i].addEventListener('mouseout', () =>{
+            footerLinks[i].querySelector('.material-symbols-outlined').classList.toggle('hidden');
+        });
+    }
 
+    document.addEventListener("DOMContentLoaded", function () {
+        // create an array of all sections
+        const sections = document.querySelectorAll(".section-content");
+    
+        // Function to check if an element is in the viewport
+        function isInViewport(element) {
+            let rect = element.getBoundingClientRect(); 
+            return (
+                rect.top < window.innerHeight * 0.8 && rect.bottom > 0
+            );
+        }
+    
+        // Function to check all sections and toggle visibility
+        function checkSections() {
+            for (let i = 0; i < sections.length; i++) {
+                let section = sections[i];
+                let link = homepageLinks[i];
+    
+                if (isInViewport(section)) { // if the section IS in the viewport, do the following
+                    section.classList.add("visible"); // make it visible
+                    html.style.backgroundColor = pageData.backgroundColor[i]; // change the background color
+                    section.style.color = pageData.textColor[i]; // set the text color
+                    link.style.color = pageData.textColor[i]; // the link inactive color should match the text color 
+                } else { // if the section IS NOT in the viewport, do the following
+                    section.classList.remove("visible"); // Make it invisible
+                }
+            }
+        }
+
+        for (let i=0; i<homepageLinks.length; i++){
+            let link = homepageLinks[i];
+            link.addEventListener("mouseover", ()=> {
+                link.style.color = pageData.linkHoverColor[i];
+                link.style.setProperty("--underline-color", pageData.linkHoverColor[i]); // changes var(--underline-color), applied in ::after in css to match the hover color
+            });
+            link.addEventListener("mouseout", ()=> {
+                link.style.color = pageData.textColor[i];
+            });
+        }
+    
+        // Run the check when scrolling or resizing
+        window.addEventListener("scroll", checkSections);
+        window.addEventListener("resize", checkSections);
+    
+        // Initial check in case sections are already visible on load
+        checkSections();
+    });
+
+    
+    // the following handles the tagline word replacement
+    let currentIndex = 0
     function nextInput() { //this function is initialized here, and will run every setInterval (at bottom)
         const currentInput = inputs[currentIndex];
         const nextIndex = (currentIndex + 1) % inputs.length;

@@ -3,12 +3,9 @@
     --aquamarine: #a4f4c0;
     --palm: #091e05;
     --sun: #f9a620;
-    --alt-sun: #f9d800;
     --scarlet: #f42c04;
 	--default-light: #f8fcfb;
 	--default-dark: #070707;
-    --underline-color: var(--medium-blue);
-	--profile-icon-size: 2rem;
 }
 
 /* fonts */
@@ -55,14 +52,6 @@
   'wght' 600,
   'GRAD' 0,
   'opsz' 24
-}
-
-.bgcolor1 { background-color: var(--default-light); transition: all 0.4s;}
-.bgcolor2 { background-color: var(--aquamarine); transition: all 0.4s;}
-.bgcolor3 { background-color: var(--medium-blue); transition: all 0.4s;}
-
-.hidden{
-	visibility: hidden;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -120,55 +109,66 @@ html{
 	background-color: var(--default-light); /* background color for entire page */
 	color: var(--default-dark); /* default text color for the entire page */
 	font-family: metropolis;
-    transition: all 0.4s;
+}
+/* the following handles classes assigned to the html element after different sections are entered */
+.bgcolor1 { background-color: var(--default-light); color: var(--default-dark); transition: all 0.4s;}
+.bgcolor2 { background-color: var(--aquamarine);  color: var(--palm); transition: all 0.4s;}
+.bgcolor3 { background-color: var(--medium-blue); color: var(--default-light); transition: all 0.4s;}
+.bgcolor4 { background-color: #dfcbf8;}
+.bgcolor5 { background-color: #f8cbe4;}
+
+a{ /* a element defaults */
+	text-decoration: none;
 }
 body{
 	padding: 2.5rem 2rem;
 }
-main{
-    padding: 0 2.5rem;
+
+/* LINK COLORS */
+/* inactive */
+nav div a{
+	color: var(--default-dark)
 }
-section{
-    /* border-top: 1px solid; */ /* add a border for trouble shooting page scroll */
-    border-color: black;
-    height: 100vh;
-    position: relative;
+#section1-content a{
+	color: var(--default-dark);
 }
-a{ /* default stying for links all links */
-    text-decoration: none;
-    color: var(--default-dark);
-    position: relative;
-    font-size: 2rem;
+#section2-content a{
+	color: var(--palm);
 }
-a::after{
-	content: "";
-	position: absolute;
-	left: 0;
-	bottom: -2px; /* Adjust for spacing */
-	width: 0;
-	height: 3px;
-	transition: width 0.2s ease-in-out;
+#section3-content a{
+	color: var(--default-light);
 }
-a:hover::after{
-	width: 100%;
-    background-color: var(--underline-color);
+/* hover */
+nav div a:hover{
+	color: var(--medium-blue);
 }
-a:hover{
-	transition: all 0.2s ease-in-out;
-    color: var(--medium-blue);
+nav div a::after{
+	background-color: var(--medium-blue);
 }
-a.no-underline::after{
-	content: none;
+#section1-content a:hover{
+	color: var(--medium-blue);
 }
+#section1-content a::after{
+	background-color: var(--medium-blue);
+}
+#section2-content a:hover{
+	color: var(--sun);
+}
+#section2-content a::after{
+	background-color: var(--sun);
+}
+#section3-content a:hover{
+	color: var(--aquamarine);
+}
+#section3-content a::after{
+	background-color: var(--aquamarine);
+}
+
 nav{
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-}
-.logo:hover::after{ 
-    width: 0%; /* remove the default link underline */
-    background-color: none;
 }
 nav img{
 	height: 3rem;
@@ -185,14 +185,42 @@ nav div a{
 	border-radius: 75px;
 	font-weight: 400;
 }
+.default-link{ /* styling to be shared by all links on the page */
+	display: block;
+	font-family: metropolis;
+	font-size: 2rem;
+	text-decoration: none;
+	color: var(--default-dark);
+	position: relative;
+}
+.default-link::after{
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -2px; /* Adjust for spacing */
+	width: 0;
+	height: 3px;
+	transition: width 0.2s ease-in-out;
+}
+.default-link:hover::after{
+	width: 100%;
+}
+.default-link:hover{
+	transition: all 0.2s ease-in-out;
+}
+.main-link{ /* styling for links on the home page (besides header and footer) */
+	padding: 1rem 0 0 0;
+	font-style: italic;
+	font-weight: 600;
+}
 .profile-icon{
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
-	height: var(--profile-icon-size);/* height and width being the same makes it a circle */
-	width: var(--profile-icon-size);
-	background-color: var(--scarlet);
-	color: var(--default-light);
+	height: 2rem;/* height and width being the same makes it a circle */
+	width: 2rem;
+	background-color: var(--aquamarine);
+	color: var(--palm);
 	padding: 1rem;
 	border-radius: 75px;
 }
@@ -200,15 +228,18 @@ nav div a{
 	position: absolute; /* this allows the span to "float" in the center of the circle */
 	font-size: 1.25rem;
 }
-.homepage-link{ /* styling to be shared by all links in the homepage stack */
-    display: flex;
-	flex-direction: row;
-	align-items: center;
-	max-width: fit-content;
-    margin: 1rem 0 0 0;
+main{
+	padding: 0 5rem;
 }
-.homepage-link span:last-of-type{
-    padding: 0 0 0 0.25rem; /* the gap between text and arrow icon */
+#section1{
+	height: 100vh;
+	position: relative;
+}
+#section1-content{
+	position: absolute;
+	transform: translateY(35vh);
+	display: flex;
+	flex-direction: column;
 }
 h2{
 	font-size: 5rem;
@@ -216,7 +247,6 @@ h2{
 	line-height: 6rem;
 	display: inline-flex; /* this should be flex so that the spans wrap before the words in each span when the page is resized */
 	flex-flow: row wrap;
-    max-width: 75vw;
 }
 #slot{
 	position: relative;
@@ -242,80 +272,45 @@ h2{
 	transition: transform 1s ease-in-out, opacity 0.4s ease-in-out;
 	height: fit-content;
 }
-.section-content {
-    opacity: 0; /* invisible by default*/
-    position: absolute; /* positioned relative to it's parent section element */
-    top: 35vh; /* distance from top of parent section to top of section-content */
-    transform: translateY(35px); /* begin slightly out of place*/
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-.section-content.visible { /* the visible class is added when the section content is in the viewport */
-    opacity: 1; /* become visble */
-    transform: translateY(0); /* move to actual position  */
-}
-footer{
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	background-color: var(--default-dark);
-	color: var(--default-light);
-	padding: 2.5rem;
-	border-radius: 1rem;
-}
-footer p{
-	font-size: 1.25rem;
-}
-#footer-right, #footer-left{
-	display: flex;
-	flex-direction: row;
-	gap: 4rem;
-}
-footer .logo img{
-	height: 2rem;
-	width: auto;
-}
-.footer-column{
-	display: flex;
-	flex-direction: column;
-	width: fit-content;
-}
-.footer-column:first-of-type{
-	justify-content: space-between;
-}
-#footer-link-stack{
-	display: flex;
-	flex-direction: column;
-	gap: 0.25rem;
-}
-#footer-link-stack a{
-	color: var(--default-light);
+#section1-content a,
+.section-content a{
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	justify-content: space-between;
-	gap: 2rem;
-	font-size: 1.5rem;
+	max-width: fit-content;
 }
-#footer-link-stack a:hover{
-	color: var(--aquamarine);
+#section1-content a span:first-of-type,
+.section-content a span:first-of-type{
+	font-size: 2.5rem;
+	font-weight: 600;
+	margin: 0 0.25rem 0 0;
 }
-.profile-card{
+#section1-content a span:last-of-type,
+.section-content a span:last-of-type{
+	font-size: 2.5rem
+}
+section{
+	width: 100%;
+	height: 100vh;
+	position: relative;
+	transition: all 0.5s;
+}
+.section-content{
+	position: absolute;
+	transform: translateY(35vh);
 	display: flex;
-	flex-direction: row;
-	align-items: center;
-	gap: 1rem;
+	flex-direction: column;
+	transition: all 0.5s;
 }
-.profile-card .profile-icon{
-	height: 1.5rem;
-	width: 1.5rem;
+.section-content h2{
+	max-width: 60vw;
 }
-.full-name, .user-name{
-	font-size: 1.5rem;
+.visible{
+	visibility: visible;
 }
-.user-name{
-	margin: 0.25rem 0 0 0;
-	opacity: 0.7;
+.hidden{
+	visibility: hidden;
 }
-.profile-card .material-symbols-outlined{ 
-	opacity: 0.7;
+@media screen and (min-width: 600px){ /* styles for desktop view */
+
 }
