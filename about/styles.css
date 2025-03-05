@@ -14,37 +14,37 @@
 /* fonts */
 @font-face {
     font-family: metropolis;
-    src: url(fonts/metropolis-semibold.woff2) format('woff2');
+    src: url(../fonts/metropolis-semibold.woff2) format('woff2');
     font-weight: 600;
     font-style: normal;
 }
 @font-face {
     font-family: metropolis;
-    src: url(fonts/metropolis-SemiBoldItalic.woff2) format('woff2');
+    src: url(../fonts/metropolis-SemiBoldItalic.woff2) format('woff2');
     font-weight: 600;
     font-style: italic;
 }
 @font-face {
     font-family: metropolis;
-    src: url(fonts/metropolis-regular.woff2) format('woff2');
+    src: url(../fonts/metropolis-regular.woff2) format('woff2');
     font-weight: 400;
     font-style: normal;
 }
 @font-face {
     font-family: metropolis;
-    src: url(fonts/metropolis-regularItalic.woff2) format('woff2');
+    src: url(../fonts/metropolis-regularItalic.woff2) format('woff2');
     font-weight: 400;
     font-style: italic;
 }
 @font-face{
     font-family: metropolis;
-    src: url(fonts/metropolis-light.woff2) format('woff2');
+    src: url(../fonts/metropolis-light.woff2) format('woff2');
     font-weight: 300;
     font-style: normal;
 }
 @font-face{
     font-family: metropolis;
-    src: url(fonts/metropolis-lightItalic.woff2) format('woff2');
+    src: url(../fonts/metropolis-lightItalic.woff2) format('woff2');
     font-weight: 300;
     font-style: italic;
 }
@@ -58,7 +58,7 @@
 }
 
 .bgcolor1 { background-color: var(--default-light); transition: all 0.4s;}
-.bgcolor2 { background-color: var(--aquamarine); transition: all 0.4s;}
+.bgcolor2 { background-color: var(--default-dark); transition: all 0.4s;}
 .bgcolor3 { background-color: var(--medium-blue); transition: all 0.4s;}
 
 .hidden{
@@ -220,8 +220,8 @@ h2{
 	display: inline-flex; /* this should be flex so that the spans wrap before the words in each span when the page is resized */
 	flex-flow: row wrap;
 }
-#section4 h2{
-	max-width: 80vh;
+#section2-content p{
+    color: var(--aquamarine);
 }
 #slot{
 	position: relative;
@@ -265,6 +265,10 @@ h2{
 .section-content .divider{
 	height: 1.25rem;
 	width: auto;
+}
+.section-content .quotes{
+    height: 3rem;
+    width: auto;
 }
 .section-content.visible { /* the visible class is added when the section content is in the viewport */
     opacity: 1; /* become visble */

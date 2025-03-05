@@ -5,8 +5,8 @@
     const inputs = document.querySelectorAll('.input'); // this class is used to get divs
     const homepageLinks = document.querySelectorAll('.homepage-link');
     const pageData = { // these switch based on which section is in the viewport
-        backgroundColor: ['var(--default-light)', 'var(--aquamarine)', 'var(--medium-blue)', 'var(--default-light)'],
-        textColor: ['var(--default-dark)', 'var(--default-dark)', 'var(--default-light)', 'var(--scarlet)'],
+        backgroundColor: ['var(--default-light)', 'var(--default-dark)', 'var(--default-dark)', 'var(--default-light)'],
+        textColor: ['var(--default-dark)', 'var(--default-light)', 'var(--default-light)', 'var(--default-dark)'],
         linkHoverColor: ['var(--medium-blue)', 'var(--scarlet)', 'var(--aquamarine)', 'var(--medium-blue)'],
     }
     const footerLinks = document.querySelectorAll('#footer-link-stack a');
@@ -68,29 +68,30 @@
         checkSections();
     });
 
-    // the following handles the tagline word replacement
-    let currentIndex = 0
-    function nextInput() { //this function is initialized here, and will run every setInterval (at bottom)
-        const currentInput = inputs[currentIndex];
-        const nextIndex = (currentIndex + 1) % inputs.length;
-        const nextInput = inputs[nextIndex];
+    // uncomment to use word replacement
+    //the following handles the tagline word replacement
+    // let currentIndex = 0
+    // function nextInput() { //this function is initialized here, and will run every setInterval (at bottom)
+    //     const currentInput = inputs[currentIndex];
+    //     const nextIndex = (currentIndex + 1) % inputs.length;
+    //     const nextInput = inputs[nextIndex];
 
-        currentInput.style.transform = "translateY(-100%)"; //current word animated out
-        currentInput.style.opacity = "0";
+    //     currentInput.style.transform = "translateY(-100%)"; //current word animated out
+    //     currentInput.style.opacity = "0";
 
-        nextInput.style.transform = "translateY(0)"; //next word animated in
-        nextInput.style.opacity = "1";
+    //     nextInput.style.transform = "translateY(0)"; //next word animated in
+    //     nextInput.style.opacity = "1";
 
-        setTimeout(() => { // Prepare the word after that to start from the bottom
-            currentInput.style.transform = "translateY(100%)";
-        }, 1000); // After animation ends, reset position
+    //     setTimeout(() => { // Prepare the word after that to start from the bottom
+    //         currentInput.style.transform = "translateY(100%)";
+    //     }, 1000); // After animation ends, reset position
 
-        currentIndex = nextIndex;
-    }
+    //     currentIndex = nextIndex;
+    // }
 
-    // Initialize the first word
-    inputs[0].style.opacity = "1";
-    inputs[0].style.transform = "translateY(0)";
+    // // Initialize the first word
+    // inputs[0].style.opacity = "1";
+    // inputs[0].style.transform = "translateY(0)";
 
     // // Change word every 3 seconds
     // setInterval(nextInput, 3000);
