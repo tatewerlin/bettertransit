@@ -20,7 +20,7 @@
 /* fonts */
 @font-face {
     font-family: metropolis;
-    src: url(../fonts/metropolis-semibold.woff2) format('woff2');
+    src: url(../fonts/metropolis-semiBold.woff2) format('woff2');
     font-weight: 600;
     font-style: normal;
 }
