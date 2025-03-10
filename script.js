@@ -92,6 +92,6 @@
     inputs[0].style.opacity = "1";
     inputs[0].style.transform = "translateY(0)";
 
-    // // Change word every 3 seconds
-    // setInterval(nextInput, 3000);
+    // Change word every 3 seconds
+    setInterval(nextInput, 3000);
 })();

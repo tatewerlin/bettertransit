@@ -164,6 +164,15 @@ main section p{
 	max-width: fit-content;
 	font-weight: 600;
 }
+.specializer{
+	display: block;
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+	max-width: fit-content;
+	font-weight: 600;
+	background-color: var(--alt-sun);
+	color: var(--default-dark);
+}
 .column{
 	display: flex;
 	flex-direction: column;
@@ -177,6 +186,16 @@ main section p{
 	color: var(--palm);
 }
 #stats-tile .tile-id{
+	background-color: var(--off-green);
+}
+#stats-tile .chart{
+	max-width: 100%;
+}
+#stats-tile .action-list h3{
+	border-color: var(--off-green);
+	max-width: 50%;
+}
+#stats-tile .action-list h3:hover{
 	background-color: var(--off-green);
 }
 #column2{

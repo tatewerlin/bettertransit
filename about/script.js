@@ -5,8 +5,8 @@
     const inputs = document.querySelectorAll('.input'); // this class is used to get divs
     const homepageLinks = document.querySelectorAll('.homepage-link');
     const pageData = { // these switch based on which section is in the viewport
-        backgroundColor: ['var(--default-light)', 'var(--default-dark)', 'var(--default-dark)', 'var(--default-light)'],
-        textColor: ['var(--default-dark)', 'var(--default-light)', 'var(--default-light)', 'var(--default-dark)'],
+        backgroundColor: ['var(--default-dark)', 'var(--default-dark)', 'var(--default-dark)', 'var(--default-dark)'],
+        textColor: ['var(--default-light)', 'var(--default-light)', 'var(--default-light)', 'var(--default-light)'],
         linkHoverColor: ['var(--medium-blue)', 'var(--scarlet)', 'var(--aquamarine)', 'var(--medium-blue)'],
     }
     const footerLinks = document.querySelectorAll('#footer-link-stack a');
@@ -24,13 +24,22 @@
         // create an array of all sections
         const sections = document.querySelectorAll(".section-content");
     
-        // Function to check if an element is in the viewport
+        // // Function to check if an element is in the viewport
+        // function isInViewport(element) {
+        //     let rect = element.getBoundingClientRect(); 
+        //     return (
+        //         rect.top < window.innerHeight * 0.8 && rect.bottom > 0
+        //     );
+        // }
+
         function isInViewport(element) {
             let rect = element.getBoundingClientRect(); 
             return (
-                rect.top < window.innerHeight * 0.8 && rect.bottom > 0
+                rect.top < window.innerHeight * 0.75 && rect.bottom > window.innerHeight * 0.25
             );
         }
+
+        
     
         // Function to check all sections and toggle visibility
         function checkSections() {
